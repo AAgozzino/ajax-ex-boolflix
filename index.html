@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BoolFlix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw==" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <input id="search" type="text">
+    <button id="run">Cerca</button>
+    <h1>La tua lista di film</h1>
+    <ul id="movie-list">
+
+    </ul>
+    <!-- TEMPLATE HANDLEBARS- days -->
+    <script id="movie-template" type="text/x-handlebars-template">
+      <li class="movie">
+        <h2>{{title}}</h2>
+        <h3>Titolo originale: {{original_title}}</h3>
+        <h3>Lingua originale: {{original_language}}</h3>
+        <h3>Voto: {{vote_average}}</h3>
+
+      </li>
+    </script>
+    <!-- TEMPLATE HANDLEBARS- days -->
+
+    <!-- JavaScript -->
+    <script src="js/main.js" charset="utf-8"></script>
+  </body>
+</html>
