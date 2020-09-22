@@ -5,8 +5,9 @@ $(document).ready(function(){
       // Take value from input #search
       var searchInput = $("#search").val();
       //console.log(searchInput);
-
-      renderMovie(searchInput);
+      if (searchInput != "") {
+        renderMovie(searchInput);
+      }
     }
   );
 
@@ -14,8 +15,9 @@ $(document).ready(function(){
     function(){
       if (event.which == 13) {
         var searchInput = $("#search").val();
-
-        renderMovie(searchInput);
+        if (searchInput != "") {
+          renderMovie(searchInput);
+        }
       };
     }
   );
