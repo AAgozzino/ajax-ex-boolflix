@@ -8,6 +8,7 @@ $(document).ready(function(){
       emptyInput();
       if (searchInput != "") {
         searchMovie(searchInput);
+        searchSeries(searchInput);
 
       }
     }
@@ -21,6 +22,7 @@ $(document).ready(function(){
         emptyInput();
         if (searchInput != "") {
           searchMovie(searchInput);
+          searchSeries(searchInput);
         }
       };
     }
@@ -32,6 +34,29 @@ function searchMovie(toSearch) {
   $.ajax(
     {
       "url": "https://api.themoviedb.org/3/search/movie",
+      "data": {
+        "api_key": "35d9f9841696483eb38d55a96af8b20c",
+        "language": "it-IT",
+        "page": 1,
+        "query": toSearch
+      },
+      "method": "GET",
+      "success": function(data){
+        //console.log(data);
+        var response = data.results;
+        renderMovie(response);
+      },
+      "error": function(error){
+        alert("Errore");
+      }
+    }
+  )
+};
+
+function searchSeries(toSearch) {
+  $.ajax(
+    {
+      "url": "https://api.themoviedb.org/3/search/tv",
       "data": {
         "api_key": "35d9f9841696483eb38d55a96af8b20c",
         "language": "it-IT",
@@ -64,6 +89,11 @@ function renderMovie(result) {
       "original_language" : result[i].original_language,
       "vote_average" : voteToStar(result[i].vote_average)
     };
+    // Modify context for tvseries
+    if (result[i].hasOwnProperty("original_name")) {
+      context.title = result[i].name;
+      context.original_title = result[i].original_name;
+    }
     var html = template(context);
     $("#movie-list").append(html);
   }
