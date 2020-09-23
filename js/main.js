@@ -62,10 +62,15 @@ function renderMovie(result) {
       "title" : result[i].title,
       "original_title" : result[i].original_title,
       "original_language" : result[i].original_language,
-      "vote_average" : voteToFive(result[i].vote_average)
+      "vote_average" : voteToStar(result[i].vote_average)
     };
     var html = template(context);
     $("#movie-list").append(html);
+    console.log(result[i].vote_average);
+    var starVote = voteToStar(result[i].vote_average) + '%';
+    console.log(starVote);
+    $(".star-fill").width(starVote);
+
   }
 };
 
@@ -76,6 +81,6 @@ function emptyInput() {
 };
 
 // Convert vote base 10 to vote base 5
-function voteToFive(vote) {
-  return Math.ceil(vote / 2)
+function voteToStar(vote) {
+  return vote * 10
 };

@@ -3,7 +3,7 @@
 }
 .star-empty{
   position: relative;
-  font-family: "Font Awesome 5 Free"
+  font-family: "Font Awesome 5 Free";
 }
 
 .star-empty::before{
@@ -16,11 +16,11 @@
   top: 0;
   left: 0;
   font-family: "Font Awesome 5 Free";
-
+  width: 0;
+  overflow: hidden;
 }
 
 .star-fill::before{
   content: "\f005 \f005 \f005 \f005 \f005";
   color: #F7BB44;
-  width: 50%;
 }
