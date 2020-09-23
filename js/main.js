@@ -66,11 +66,6 @@ function renderMovie(result) {
     };
     var html = template(context);
     $("#movie-list").append(html);
-    console.log(result[i].vote_average);
-    var starVote = voteToStar(result[i].vote_average) + '%';
-    console.log(starVote);
-    $(".star-fill").width(starVote);
-
   }
 };
 
@@ -80,7 +75,23 @@ function emptyInput() {
   $("#serach").val("");
 };
 
-// Convert vote base 10 to vote base 5
+// FUNCTION - from vote to 5 stars
 function voteToStar(vote) {
-  return vote * 10
+  // Vote to 5
+  var starVote = Math.ceil(vote / 2);
+
+  // Strings star empty and star fill
+  var starEmpty = "<i class='far fa-star'></i>";
+  var starFill = "<i class='fas fa-star'></i>";
+
+  // String for stars
+  var totalStars = "";
+  for (var i = 0; i < 5; i++) {
+    if (i < starVote) {
+      totalStars += starFill;
+    } else {
+      totalStars += starEmpty;
+    }
+  }
+  return totalStars
 };
