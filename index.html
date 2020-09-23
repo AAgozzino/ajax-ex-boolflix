@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BoolFlix</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <!-- Style.css -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Handlebars -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw==" crossorigin="anonymous"></script>
@@ -24,8 +27,14 @@
         <h2>{{title}}</h2>
         <h3>Titolo originale: {{original_title}}</h3>
         <h3>Lingua originale: {{original_language}}</h3>
-        <h3>Voto: {{vote_average}}</h3>
+        <h3 class="vote">Voto:
+          <div class="star-empty">
+            <div class="star-fill"></div>
+          </div>
 
+        </h3>
+
+          <!-- {{vote_average}} -->
       </li>
     </script>
     <!-- TEMPLATE HANDLEBARS- days -->
