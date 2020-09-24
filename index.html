@@ -15,23 +15,50 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
-    <input id="search" type="text">
-    <button id="run">Cerca</button>
-    <!-- Lista filma -->
-    <h2 id="movie-list-title">La tua lista film</h2>
-    <ul id="movie-list">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-logo">
+        <img src="img/logo-netflix.png" alt="logo netflix">
+      </div>
+      <div class="header-search-bar">
+        <input id="search" type="text">
+        <button id="run">Cerca</button>
+      </div>
 
-    </ul>
-    <!-- /Lista film -->
+    </header>
+    <!-- /HEADER -->
+    <!-- MAIN -->
+    <main class="main">
+      <!-- Row movie -->
+      <div class="row-movie">
+        <h2 id="movie-list-title">I tuoi film</h2>
+        <!-- Lista film -->
+        <ul id="movie-list">
 
-    <!-- Lista serie TV -->
-    <h2 id="series-list-title">La tua lista serie TV</h2>
-    <ul id="series-list">
+        </ul>
+        <!-- /Lista film -->
+      </div>
+      <!-- /Row movie -->
 
-    </ul>
-    <!-- /Lista serie TV -->
+      <!-- Row TV series -->
+      <div class="row-series">
+        <!-- Lista serie TV -->
+        <h2 id="series-list-title">Le tue serie TV</h2>
+        <ul id="series-list">
+        
+        </ul>
+        <!-- /Lista serie TV -->
+      </div>
+      <!-- /Row TV series -->
 
-    <!-- TEMPLATE HANDLEBARS- days -->
+
+
+
+
+    </main>
+    <!-- /MAIN -->
+
+    <!-- TEMPLATE HANDLEBARS - movie & TV serie -->
     <script id="movie-template" type="text/x-handlebars-template">
       <li class="{{type}}">
         <h2>{{title}}</h2>

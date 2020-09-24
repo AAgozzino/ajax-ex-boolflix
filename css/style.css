@@ -1,3 +1,56 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* MIX */
+
+/* HEADER */
+.header{
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: black;
+}
+
+.header-logo img{
+  height: 70px;
+  padding: 20px;
+}
+
+.header-search-bar{
+  padding: 20px;
+  line-height: 30px;
+}
+/* MAIN */
+.main{
+  background-color: grey;
+  margin-top: 70px;
+  padding: 50px;
+}
+.row-movie, .row-series{
+  width: 100%;
+  background-color: lightgrey;
+  border: 1px solid black;
+  overflow: hidden;
+}
+
+#movie-list, #series-list{
+  display: flex;
+}
+/* HANDLEBARS TEMPLATE */
+#movie-list li.movie, #series-list li.series{
+  flex-shrink: 0;
+  list-style: none;
+  height: 400px;
+  width: 324px;
+  border: 1px solid black;
+  background-color: pink;
+}
 .flag-language{
   width: 32px;
   vertical-align: middle;
