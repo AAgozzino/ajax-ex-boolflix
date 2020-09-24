@@ -160,7 +160,7 @@ function printFlag(lang) {
 //FUNCTION - return complete poster path
 function posterPath(moviePath) {
   if (moviePath != null) {
-    var completePath = "https://image.tmdb.org/t/p/w185" + moviePath;
+    var completePath = "https://image.tmdb.org/t/p/w342" + moviePath;
     return "<img class='poster' src="+ completePath +" alt=''>"
   }
 
