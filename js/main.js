@@ -44,7 +44,7 @@ function searchMovie(toSearch) {
       "success": function(data){
         //console.log(data);
         var response = data.results;
-        renderMovie(response);
+        renderResults(response);
       },
       "error": function(error){
         alert("Errore");
@@ -67,7 +67,7 @@ function searchSeries(toSearch) {
       "success": function(data){
         //console.log(data);
         var response = data.results;
-        renderMovie(response);
+        renderResults(response);
       },
       "error": function(error){
         alert("Errore");
@@ -77,7 +77,7 @@ function searchSeries(toSearch) {
 };
 
 // FUNCTION - Handlebars template render
-function renderMovie(result) {
+function renderResults(result) {
   // Set Handlebars template
   var source = $("#movie-template").html();
   var template = Handlebars.compile(source);
@@ -86,7 +86,7 @@ function renderMovie(result) {
     var context = {
       "title" : result[i].title,
       "original_title" : result[i].original_title,
-      "original_language" : result[i].original_language,
+      "original_language" : printFlag(result[i].original_language),
       "vote_average" : voteToStar(result[i].vote_average)
     };
     // Modify context for tvseries
@@ -110,18 +110,26 @@ function voteToStar(vote) {
   // Vote to 5
   var starVote = Math.ceil(vote / 2);
 
-  // Strings star empty and star fill
-  var starEmpty = "<i class='far fa-star'></i>";
-  var starFill = "<i class='fas fa-star'></i>";
-
   // String for stars
   var totalStars = "";
   for (var i = 0; i < 5; i++) {
     if (i < starVote) {
-      totalStars += starFill;
+      totalStars += "<i class='fas fa-star'></i>";
     } else {
-      totalStars += starEmpty;
+      totalStars += "<i class='far fa-star'></i>";
     }
   }
   return totalStars
 };
+
+// FUNCTION - from language to flag
+function printFlag(lang) {
+ var languageArray = ["ar", "cs", "da", "de", "el", "en", "es", "fi", "fr", "ga", "he", "hi", "id", "it", "ja", "ko", "nl", "no", "pl", "pt", "ru", "sv", "th", "tr", "uk", "vi", "zh"];
+
+ //Check if languageArray includes lang
+ if (languageArray.includes(lang)) {
+   return "<img class='flag-language' src='img/flags/"+ lang +".svg' alt=''>"
+ } else {
+   return lang
+ }
+}
