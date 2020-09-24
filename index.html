@@ -17,14 +17,25 @@
   <body>
     <input id="search" type="text">
     <button id="run">Cerca</button>
-    <h1>La tua lista film</h1>
+    <!-- Lista filma -->
+    <h2 id="movie-list-title">La tua lista film</h2>
     <ul id="movie-list">
 
     </ul>
+    <!-- /Lista film -->
+
+    <!-- Lista serie TV -->
+    <h2 id="series-list-title">La tua lista serie TV</h2>
+    <ul id="series-list">
+
+    </ul>
+    <!-- /Lista serie TV -->
+
     <!-- TEMPLATE HANDLEBARS- days -->
     <script id="movie-template" type="text/x-handlebars-template">
-      <li class="movie">
+      <li class="{{type}}">
         <h2>{{title}}</h2>
+        {{{poster_path}}}
         <h3>Titolo originale: {{original_title}}</h3>
         <h3>Lingua originale: {{{original_language}}}</h3>
         <h3 class="vote">Voto: {{{vote_average}}}

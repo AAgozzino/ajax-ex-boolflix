@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  // Click event on button #run --> search movie
+  // Click event on button #run --> search movie and tv series
   $("#run").click(
     function(){
       // Take value from input #search
@@ -14,7 +14,7 @@ $(document).ready(function(){
     }
   );
 
-  // Keypress event on input #search --> search movie
+  // Keypress event on input #search --> search movie and tv series
   $("#search").keypress(
     function(){
       if (event.which == 13) {
@@ -43,8 +43,13 @@ function searchMovie(toSearch) {
       "method": "GET",
       "success": function(data){
         //console.log(data);
-        var response = data.results;
-        renderResults(response);
+        if (data.total_results == 0) {
+          // Hide #movie-list-title if no results for movie
+          $("#movie-list-title").hide();
+        } else {
+          var response = data.results;
+          renderResults(response);
+        }
       },
       "error": function(error){
         alert("Errore");
@@ -54,6 +59,7 @@ function searchMovie(toSearch) {
 };
 
 function searchSeries(toSearch) {
+  // API cal to get TV series information
   $.ajax(
     {
       "url": "https://api.themoviedb.org/3/search/tv",
@@ -66,8 +72,15 @@ function searchSeries(toSearch) {
       "method": "GET",
       "success": function(data){
         //console.log(data);
-        var response = data.results;
-        renderResults(response);
+        //console.log(data.total_results);
+        if (data.total_results == 0) {
+          // Hide #sereies-list-title if no results for series
+          $("#series-list-title").hide();
+        } else {
+          var response = data.results;
+          renderResults(response);
+        }
+
       },
       "error": function(error){
         alert("Errore");
@@ -84,24 +97,34 @@ function renderResults(result) {
 
   for (var i = 0; i < result.length; i++) {
     var context = {
+      "type": "movie",
       "title" : result[i].title,
+      "poster_path" : posterPath(result[i].poster_path),
       "original_title" : result[i].original_title,
       "original_language" : printFlag(result[i].original_language),
       "vote_average" : voteToStar(result[i].vote_average)
     };
-    // Modify context for tvseries
+
     if (result[i].hasOwnProperty("original_name")) {
+      // Modify context for tvseries
+      context.type = "series"
       context.title = result[i].name;
       context.original_title = result[i].original_name;
+      // Append template to #series-list
+      var html = template(context);
+      $("#series-list").append(html);
+    }else {
+      // Append template to #move-list
+      var html = template(context);
+      $("#movie-list").append(html);
     }
-    var html = template(context);
-    $("#movie-list").append(html);
   }
 };
 
-// Empty ul #movie-list and input val
+// Empty ul #movie-list, ul # and input val
 function emptyInput() {
   $("#movie-list").html("");
+  $("#series-list").html("");
   $("#serach").val("");
 };
 
@@ -110,7 +133,7 @@ function voteToStar(vote) {
   // Vote to 5
   var starVote = Math.ceil(vote / 2);
 
-  // String for stars
+  // Create string for stars
   var totalStars = "";
   for (var i = 0; i < 5; i++) {
     if (i < starVote) {
@@ -132,4 +155,13 @@ function printFlag(lang) {
  } else {
    return lang
  }
-}
+};
+
+//FUNCTION - return complete poster path
+function posterPath(moviePath) {
+  if (moviePath != null) {
+    var completePath = "https://image.tmdb.org/t/p/w185" + moviePath;
+    return "<img class='poster' src="+ completePath +" alt=''>"
+  }
+
+};
