@@ -14,28 +14,32 @@
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
+
   <body>
     <!-- HEADER -->
     <header class="header">
+      <!-- HEADER - Logo -->
       <div class="header-logo">
         <img src="img/boolflix_logo.png" alt="logo netflix">
       </div>
+      <!-- /HEADER - Logo -->
+
+      <!-- /HEADER - Search bar -->
       <div class="header-search-bar">
         <input id="search" type="text">
         <button class="btn" id="run">Cerca</button>
       </div>
-
+      <!-- /HEADER - Search bar -->
     </header>
     <!-- /HEADER -->
+
     <!-- MAIN -->
     <main class="main">
       <!-- Row movie -->
       <div class="row-movie">
         <h2 id="movie-list-title">I tuoi film</h2>
         <!-- Lista film -->
-        <ul id="movie-list">
-
-        </ul>
+        <ul id="movie-list"></ul>
         <!-- /Lista film -->
       </div>
       <!-- /Row movie -->
@@ -44,16 +48,10 @@
       <div class="row-series">
         <!-- Lista serie TV -->
         <h2 id="series-list-title">Le tue serie TV</h2>
-        <ul id="tv-list">
-
-        </ul>
+        <ul id="tv-list"></ul>
         <!-- /Lista serie TV -->
       </div>
       <!-- /Row TV series -->
-
-
-
-
 
     </main>
     <!-- /MAIN -->
@@ -61,8 +59,8 @@
     <!-- TEMPLATE HANDLEBARS - movie & TV serie -->
     <script id="movie-template" type="text/x-handlebars-template">
       <li class="{{type}}">
-        <!-- Poster -->
-        <div class="poster">
+        <!-- Box -->
+        <div class="box">
           {{#if poster_path}}
           <img class="poster-movie" src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{title}}">
           {{else}}
@@ -70,37 +68,41 @@
           {{/if}}
           <!-- /Info box -->
           <div class="info-box">
+            <!-- Title -->
             <div class="info-title">
               <span class="info-placeholder">Titolo: </span><span>{{title}}</span>
             </div>
+            <!-- Original title -->
             <div class="info-original-name">
               <span class="info-placeholder">Titolo originale: </span> <span>{{original_title}}</span>
             </div>
+            <!-- Vote -->
             <div class="info-vote">
               <span class="info-placeholder">Voto: </span> <span>{{{vote_average}}}</span>
             </div>
+            <!-- Original language -->
             <div class="info-original-language">
               <span class="info-placeholder">Lingua originale: </span> <span> {{{original_language}}}</span>
             </div>
+            <!-- Overview -->
             <div class="info-overview">
               <span class="info-placeholder">Overview:</span> <span class="overview-text">{{overview}}</span>
             </div>
           </div>
           <!-- /Info box -->
         </div>
-        <!-- /Poster -->
+        <!-- /Box -->
       </li>
 
     </script>
+    <!-- /TEMPLATE HANDLEBARS - movie & TV serie -->
 
-    <!-- TEMPLATE HANDLEBARS - movie & TV serie -->
+    <!-- TEMPLATE HANDLEBARS - message no results -->
     <script id="notfound-template" type="text/x-handlebars-template">
       <li class="not-found">
         Nessun risultato per la tua ricerca.
       </li>
     </script>
-    <!-- TEMPLATE HANDLEBARS - message no results -->
-
     <!-- /TEMPLATE HANDLEBARS - message no results -->
 
     <!-- JavaScript -->

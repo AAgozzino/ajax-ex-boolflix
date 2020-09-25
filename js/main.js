@@ -80,7 +80,7 @@ function renderResults(result, type) {
       // Append template to #series-list
       var html = template(context);
       $("#tv-list").append(html);
-    }else {
+    } else {
       // Append template to #move-list
       var html = template(context);
       $("#movie-list").append(html);
