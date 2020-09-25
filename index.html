@@ -64,7 +64,10 @@
           {{#if poster_path}}
           <img class="poster-movie" src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{title}}">
           {{else}}
-          <div class="no-img">{{title}}</div>
+          <div class="no-img">
+            <div class="no-img-title">{{title}}</div>
+            <img src="img/no_poster.png" alt="No poster">
+          </div>
           {{/if}}
           <!-- /Info box -->
           <div class="info-box">
