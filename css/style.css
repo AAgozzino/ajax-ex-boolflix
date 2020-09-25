@@ -28,8 +28,11 @@
   line-height: 30px;
 }
 /* MAIN */
+body{
+  background-color: #141414;
+}
+
 .main{
-  background-color: grey;
   margin-top: 70px;
   padding: 50px;
 }
@@ -53,7 +56,6 @@
   width: 342px;
   padding: 10px;
   border: 1px solid black;
-  background-color: pink;
 }
 .poster{
   position: relative;
@@ -70,10 +72,12 @@
 .poster .no-img{
   height: 100%;
   width: 100%;
-  background-color: black;
-  color: #fff;
   padding: 20px;
   text-align: center;
+  background-color: black;
+  color: #fff;
+  border: 1px solid #fff;
+
 }
 .info-box{
   display: none;
@@ -96,4 +100,8 @@
 .flag-language{
   width: 32px;
   vertical-align: middle;
+}
+
+.info-overview .overview-text{
+  text-overflow: ellipsis;
 }
