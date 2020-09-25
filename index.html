@@ -63,7 +63,11 @@
       <li class="{{type}}">
         <!-- Poster -->
         <div class="poster">
-          {{{poster_path}}}
+          {{#if poster_path}}
+          <img class="poster-movie" src="https://image.tmdb.org/t/p/w342{{poster_path}}" alt="{{title}}">
+          {{else}}
+          <div class="no-img">{{title}}</div>
+          {{/if}}
           <!-- /Info box -->
           <div class="info-box">
             <div class="info-title">

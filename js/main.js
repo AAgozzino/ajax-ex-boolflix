@@ -66,7 +66,7 @@ function renderResults(result) {
     var context = {
       "type" : "movie",
       "title" : result[i].title,
-      "poster_path" : posterPath(result[i].poster_path,result[i].title || result[i].name),
+      "poster_path" : result[i].poster_path,
       "original_title" : result[i].original_title,
       "original_language" : printFlag(result[i].original_language),
       "vote_average" : voteToStar(result[i].vote_average),
@@ -131,16 +131,6 @@ function printFlag(lang) {
  } else {
    return lang
  }
-};
-
-//FUNCTION - return complete poster path
-function posterPath(moviePath,title) {
-  if (moviePath != null) {
-    var completePath = "https://image.tmdb.org/t/p/w342" + moviePath;
-    return "<img class='poster-movie' src="+ completePath +" alt=''>";
-  } else {
-    return "<div class='no-img'>"+ title +"</div>"
-  }
 };
 
 // FUNCTION - crop overview text
