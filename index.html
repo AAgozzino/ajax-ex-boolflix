@@ -34,32 +34,7 @@
         <h2 id="movie-list-title">I tuoi film</h2>
         <!-- Lista film -->
         <ul id="movie-list">
-          <li class="movie">
-            <!-- Poster -->
-            <div class="poster">
-              <img class="poster-movie" src="img/poster-prova.jpg" alt="">
-              <!-- /Info box -->
-              <div class="info-box">
-                <div class="info-title">
-                  <span class="info-placeholder">Titolo: </span><span>Ritorno al Futuro</span>
-                </div>
-                <div class="info-original-name">
-                  <span class="info-placeholder">Titolo originale: </span> <span> Back to the Future</span>
-                </div>
-                <div class="info-vote">
-                  <span class="info-placeholder">Voto: </span> <span><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i></span>
-                </div>
-                <div class="info-original-language">
-                  <span class="info-placeholder">Lingua originale: </span> <span> <img class="flag-language" src="img/flags/en.svg" alt=""></span>
-                </div>
-                <div class="info-overview">
-                  <span class="info-placeholder">Overview:</span> <span>Marty McFly è stato catapultato per errore nel 1955, grazie alla macchina del tempo ideata dal suo amico scienziato Doc. Non avendo più "carburante" per poter tornare nel futuro si rivolge alla versione più giovane di Doc, che nonostante l'incredulità iniziale si farà in quattro per aiutarlo. Ma nel 1955 non è solo Doc ad essere più giovane, Marty infatti si imbatte casualmente nei suoi genitori, all'epoca teenager, ma l'incontro aggiungerà altri problemi.</span>
-                </div>
-              </div>
-              <!-- /Info box -->
-            </div>
-            <!-- /Poster -->
-          </li>
+
         </ul>
         <!-- /Lista film -->
       </div>
@@ -69,7 +44,7 @@
       <div class="row-series">
         <!-- Lista serie TV -->
         <h2 id="series-list-title">Le tue serie TV</h2>
-        <ul id="series-list">
+        <ul id="tv-list">
 
         </ul>
         <!-- /Lista serie TV -->
@@ -86,15 +61,43 @@
     <!-- TEMPLATE HANDLEBARS - movie & TV serie -->
     <script id="movie-template" type="text/x-handlebars-template">
       <li class="{{type}}">
-        <h2>{{title}}</h2>
-        {{{poster_path}}}
-        <h3>Titolo originale: {{original_title}}</h3>
-        <h3>Lingua originale: {{{original_language}}}</h3>
-        <h3 class="vote">Voto: {{{vote_average}}}
-        </h3>
+        <!-- Poster -->
+        <div class="poster">
+          {{{poster_path}}}
+          <!-- /Info box -->
+          <div class="info-box">
+            <div class="info-title">
+              <span class="info-placeholder">Titolo: </span><span>{{title}}</span>
+            </div>
+            <div class="info-original-name">
+              <span class="info-placeholder">Titolo originale: </span> <span>{{original_title}}</span>
+            </div>
+            <div class="info-vote">
+              <span class="info-placeholder">Voto: </span> <span>{{{vote_average}}}</span>
+            </div>
+            <div class="info-original-language">
+              <span class="info-placeholder">Lingua originale: </span> <span> {{{original_language}}}</span>
+            </div>
+            <div class="info-overview">
+              <span class="info-placeholder">Overview:</span> <span>{{overview}}</span>
+            </div>
+          </div>
+          <!-- /Info box -->
+        </div>
+        <!-- /Poster -->
+      </li>
+
+    </script>
+
+    <!-- TEMPLATE HANDLEBARS - movie & TV serie -->
+    <script id="notfound-template" type="text/x-handlebars-template">
+      <li class="not-found">
+        Nessun risultato per la tua ricerca.
       </li>
     </script>
-    <!-- TEMPLATE HANDLEBARS- days -->
+    <!-- TEMPLATE HANDLEBARS - message no results -->
+
+    <!-- /TEMPLATE HANDLEBARS - message no results -->
 
     <!-- JavaScript -->
     <script src="js/main.js" charset="utf-8"></script>

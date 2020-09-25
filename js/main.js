@@ -2,15 +2,7 @@ $(document).ready(function(){
   // Click event on button #run --> search movie and tv series
   $("#run").click(
     function(){
-      // Take value from input #search
-      var searchInput = $("#search").val();
-      //console.log(searchInput);
-      emptyInput();
-      if (searchInput != "") {
-        searchMovie(searchInput);
-        searchSeries(searchInput);
-
-      }
+      search();
     }
   );
 
@@ -18,22 +10,28 @@ $(document).ready(function(){
   $("#search").keypress(
     function(){
       if (event.which == 13) {
-        var searchInput = $("#search").val();
-        emptyInput();
-        if (searchInput != "") {
-          searchMovie(searchInput);
-          searchSeries(searchInput);
-        }
+        search()
       };
     }
   );
 });
 
-function searchMovie(toSearch) {
+// FUNCTION - search movie and series
+function search(){
+  var searchInput = $("#search").val();
+  emptyInput();
+  if (searchInput != "") {
+    getData("movie", searchInput);
+    getData("tv", searchInput);
+  }
+};
+
+// FUNCTION - get movie or tv series
+function getData(type, toSearch){
   // API call to get movie information
   $.ajax(
     {
-      "url": "https://api.themoviedb.org/3/search/movie",
+      "url": "https://api.themoviedb.org/3/search/" + type,
       "data": {
         "api_key": "35d9f9841696483eb38d55a96af8b20c",
         "language": "it-IT",
@@ -44,43 +42,12 @@ function searchMovie(toSearch) {
       "success": function(data){
         //console.log(data);
         if (data.total_results == 0) {
-          // Hide #movie-list-title if no results for movie
-          $("#movie-list-title").hide();
+          // If no results show message not found
+          notFound(type)
         } else {
           var response = data.results;
           renderResults(response);
         }
-      },
-      "error": function(error){
-        alert("Errore");
-      }
-    }
-  )
-};
-
-function searchSeries(toSearch) {
-  // API cal to get TV series information
-  $.ajax(
-    {
-      "url": "https://api.themoviedb.org/3/search/tv",
-      "data": {
-        "api_key": "35d9f9841696483eb38d55a96af8b20c",
-        "language": "it-IT",
-        "page": 1,
-        "query": toSearch
-      },
-      "method": "GET",
-      "success": function(data){
-        //console.log(data);
-        //console.log(data.total_results);
-        if (data.total_results == 0) {
-          // Hide #sereies-list-title if no results for series
-          $("#series-list-title").hide();
-        } else {
-          var response = data.results;
-          renderResults(response);
-        }
-
       },
       "error": function(error){
         alert("Errore");
@@ -97,12 +64,13 @@ function renderResults(result) {
 
   for (var i = 0; i < result.length; i++) {
     var context = {
-      "type": "movie",
+      "type" : "movie",
       "title" : result[i].title,
-      "poster_path" : posterPath(result[i].poster_path),
+      "poster_path" : posterPath(result[i].poster_path,result[i].title || result[i].name),
       "original_title" : result[i].original_title,
       "original_language" : printFlag(result[i].original_language),
-      "vote_average" : voteToStar(result[i].vote_average)
+      "vote_average" : voteToStar(result[i].vote_average),
+      "overview" : result[i].overview
     };
 
     if (result[i].hasOwnProperty("original_name")) {
@@ -112,7 +80,7 @@ function renderResults(result) {
       context.original_title = result[i].original_name;
       // Append template to #series-list
       var html = template(context);
-      $("#series-list").append(html);
+      $("#tv-list").append(html);
     }else {
       // Append template to #move-list
       var html = template(context);
@@ -121,7 +89,15 @@ function renderResults(result) {
   }
 };
 
-// Empty ul #movie-list, ul # and input val
+// FUNCTION - render message not found
+function notFound(type){
+  var source = $("#notfound-template").html();
+  var template = Handlebars.compile(source);
+  var html = template();
+  $("#" + type + "-list").append(html);
+};
+
+// FUNCTION - Empty ul #movie-list, ul # and input val
 function emptyInput() {
   $("#movie-list").html("");
   $("#series-list").html("");
@@ -158,10 +134,12 @@ function printFlag(lang) {
 };
 
 //FUNCTION - return complete poster path
-function posterPath(moviePath) {
+function posterPath(moviePath,title) {
   if (moviePath != null) {
     var completePath = "https://image.tmdb.org/t/p/w342" + moviePath;
-    return "<img class='poster' src="+ completePath +" alt=''>"
+    return "<img class='poster-movie' src="+ completePath +" alt=''>";
+  } else {
+    return "<div class='no-img'>"+ title +"</div>"
   }
 
 };
