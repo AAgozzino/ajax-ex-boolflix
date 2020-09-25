@@ -46,7 +46,7 @@ function getData(type, toSearch){
           notFound(type)
         } else {
           var response = data.results;
-          renderResults(response);
+          renderResults(response, type);
         }
       },
       "error": function(error){
@@ -57,14 +57,14 @@ function getData(type, toSearch){
 };
 
 // FUNCTION - Handlebars template render
-function renderResults(result) {
+function renderResults(result, type) {
   // Set Handlebars template
   var source = $("#movie-template").html();
   var template = Handlebars.compile(source);
 
   for (var i = 0; i < result.length; i++) {
     var context = {
-      "type" : "movie",
+      "type" : type,
       "title" : result[i].title,
       "poster_path" : result[i].poster_path,
       "original_title" : result[i].original_title,
@@ -75,7 +75,6 @@ function renderResults(result) {
 
     if (result[i].hasOwnProperty("original_name")) {
       // Modify context for tvseries
-      context.type = "series"
       context.title = result[i].name;
       context.original_title = result[i].original_name;
       // Append template to #series-list
@@ -100,7 +99,7 @@ function notFound(type){
 // FUNCTION - Empty ul #movie-list, ul # and input val
 function emptyInput() {
   $("#movie-list").html("");
-  $("#series-list").html("");
+  $("#tv-list").html("");
   $("#serach").val("");
 };
 

@@ -15,33 +15,48 @@
   z-index: 1;
   width: 100%;
   height: 70px;
+  padding: 20px 50px;
   background-color: black;
 }
 
 .header-logo img{
-  height: 70px;
-  padding: 20px;
+  height: 100%;
+
 }
 
 .header-search-bar{
-  padding: 20px;
   line-height: 30px;
+}
+
+.header-search-bar input{
+  height: 30px;
+  width: 300px;
+  margin-right: 10px;
+  border-radius: 3px;
+}
+.header-search-bar button{
+  height: 100%;
+  padding: 5px;
 }
 /* MAIN */
 body{
   background-color: #141414;
+  font-family: sans-serif;
 }
 
 .main{
   margin-top: 70px;
-  padding: 50px;
+  color: #fff;
 }
 
 .row-movie, .row-series{
   width: 100%;
-  background-color: lightgrey;
-  border: 1px solid black;
+  padding: 50px;
   overflow: hidden;
+}
+
+#movie-list-title, #series-list-title{
+  padding-left: 10px;
 }
 
 #movie-list, #tv-list{
@@ -50,13 +65,14 @@ body{
   flex-wrap: wrap;
 }
 /* HANDLEBARS TEMPLATE */
-#movie-list li.movie, #tv-list li.series{
+#movie-list li.movie, #tv-list li.tv{
   flex-shrink: 0;
   list-style: none;
   width: 342px;
+  height: 515px;
   padding: 10px;
-  border: 1px solid black;
 }
+
 .poster{
   position: relative;
   width: 100%;
@@ -70,16 +86,21 @@ body{
 }
 
 .poster .no-img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
   padding: 20px;
   text-align: center;
+  text-transform: uppercase;
+  font-size: 30px;
   background-color: black;
   color: #fff;
   border: 1px solid #fff;
-
 }
 
+/* Info box */
 .info-box{
   display: none;
   position: absolute;
@@ -88,18 +109,32 @@ body{
   height: 100%;
   width: 100%;
   padding: 20px;
-  background-color: green;
+  border: 1px solid #fff;
+  background-color: #000;
 }
 
 .poster:hover .info-box{
   display: block;
 }
 
+.info-box [class*="info-"]{
+  margin-bottom: 5px;
+}
+
 .info-placeholder{
   font-weight: bold;
 }
 
+.info-vote .fas.fa-star{
+  color: #FDBD01;
+}
 .flag-language{
   width: 32px;
   vertical-align: middle;
+}
+
+/* Not found */
+li.not-found{
+  list-style: none;
+  padding: 10px;
 }
