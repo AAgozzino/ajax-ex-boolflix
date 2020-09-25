@@ -79,6 +79,7 @@ body{
   border: 1px solid #fff;
 
 }
+
 .info-box{
   display: none;
   position: absolute;
@@ -93,6 +94,7 @@ body{
 .poster:hover .info-box{
   display: block;
 }
+
 .info-placeholder{
   font-weight: bold;
 }
@@ -100,8 +102,4 @@ body{
 .flag-language{
   width: 32px;
   vertical-align: middle;
-}
-
-.info-overview .overview-text{
-  text-overflow: ellipsis;
 }

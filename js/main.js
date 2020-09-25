@@ -70,7 +70,7 @@ function renderResults(result) {
       "original_title" : result[i].original_title,
       "original_language" : printFlag(result[i].original_language),
       "vote_average" : voteToStar(result[i].vote_average),
-      "overview" : result[i].overview
+      "overview" : cropText(result[i].overview, 600)
     };
 
     if (result[i].hasOwnProperty("original_name")) {
@@ -141,5 +141,16 @@ function posterPath(moviePath,title) {
   } else {
     return "<div class='no-img'>"+ title +"</div>"
   }
+};
 
+// FUNCTION - crop overview text
+function cropText(text, num) {
+  // If text shorter than fixed character number
+  if (text.length <= num) {
+    return text
+  }else {
+    // Slice text
+    var subText = text.substr(0, num-1);
+    return subText.substr(0, subText.lastIndexOf(" ")) + " ..."
+  }
 };
